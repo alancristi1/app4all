@@ -240,39 +240,65 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/LayoutEnd"
+            android:id="@+id/layoutMapa"
             android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:background="@color/colorDefault"
+            android:layout_height="103dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mapView">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:id="@+id/txtEndMapa"
-                android:layout_width="wrap_content"
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                app:layout_constraintBottom_toTopOf="@+id/layoutTxtEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layoutTxtEnd"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="100dp"
-                android:textAlignment="inherit"
-                android:textColor="@color/colorWhite"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorDefault"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mapView">
+
+                <TextView
+                    android:id="@+id/txtEndMapa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="64dp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </android.support.constraint.ConstraintLayout>
+
 
             <LinearLayout
                 android:id="@+id/layoutIconMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/corners"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.98">
+                app:layout_constraintVertical_bias="0.87">
 
                 <ImageView
                     android:id="@+id/imgIconMap"
@@ -285,31 +311,18 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
             </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/LayoutEnd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/layoutComm"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/corners"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LayoutEnd"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/layoutMapa">
 
             <ImageView
                 android:id="@+id/imgComm"
@@ -330,14 +343,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/layoutComm"
-            app:layout_constraintTop_toBottomOf="@+id/LayoutEnd" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutMapa" />
 
         <TextView
             android:id="@+id/txtTituloComm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toEndOf="@+id/layoutComm"
             app:layout_constraintTop_toBottomOf="@+id/txtNomeComm" />
 
@@ -356,9 +369,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LayoutEnd" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutMapa" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
 
     </android.support.constraint.ConstraintLayout>
 
