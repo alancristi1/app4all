@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,11 +24,12 @@ import retrofit2.Retrofit;
 
 public class TarefaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-
+    LatLng latLng;
     GoogleMap maps;
     MapView mapView;
-    TextView txtCidade, txtTitulo, txtTexto, txtEndMapa;
-    ImageView imgTarefa, imgLogo;
+    TextView txtCidade, txtTitulo, txtTexto, txtEndMapa, txtNomeComm, txtTituloComm, txtComm;
+    ImageView imgTarefa, imgLogo, imgComm;
+    RatingBar ratingnota;
     private static final String MAP_VIEW_BUNDLE_KEY = "AIzaSyC-ZeJshDV_7YJ3Yo4092UrxTVphG0U6Jk";
 
     @Override
@@ -42,6 +44,11 @@ public class TarefaActivity extends AppCompatActivity implements OnMapReadyCallb
         imgTarefa = findViewById(R.id.imgTarefa);
         imgLogo = findViewById(R.id.imgLogo);
         mapView = findViewById(R.id.mapView);
+        imgComm = findViewById(R.id.imgComm);
+        txtNomeComm = findViewById(R.id.txtNomeComm);
+        txtTituloComm = findViewById(R.id.txtTituloComm);
+        txtComm = findViewById(R.id.txtComm);
+        ratingnota = findViewById(R.id.nota);
 
         String id = getIntent().getExtras().getString("id");
 
@@ -76,6 +83,17 @@ public class TarefaActivity extends AppCompatActivity implements OnMapReadyCallb
                     Picasso.get()
                             .load(response.body().getUrlLogo())
                             .into(imgLogo);
+
+                    Picasso.get()
+                            .load(response.body().getComentario().getUrlFoto())
+                            .into(imgComm);
+
+                    txtNomeComm.append(response.body().getComentario().getNome());
+                    txtTituloComm.append(response.body().getComentario().getTitulo());
+                    txtComm.append(response.body().getComentario().getComentario());
+                    int nota = response.body().getComentario().getNota();
+                    ratingnota.setNumStars(nota);
+                    latLng = new LatLng (response.body().getLatitude(), response.body().getLongitude());
                 }
             }
 
@@ -133,7 +151,7 @@ public class TarefaActivity extends AppCompatActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         maps = googleMap;
         maps.setMinZoomPreference(12);
-        LatLng ny = new LatLng(40.7143528, -74.0059731);
-        maps.moveCamera(CameraUpdateFactory.newLatLng(ny));
+        LatLng position = new LatLng(latLng.latitude, latLng.longitude);
+        maps.moveCamera(CameraUpdateFactory.newLatLng(position));
     }
 }
