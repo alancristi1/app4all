@@ -1,5 +1,7 @@
 package resende.alan.app4all.model;
 
+import java.util.ArrayList;
+
 public class tarefa {
 
     private String id;
@@ -13,11 +15,11 @@ public class tarefa {
     private String endereco;
     private double latitude;
     private double longitude;
-    private Comentario comentario;
+    private ArrayList<Comentario> comentarios;
 
     public tarefa(String id, String cidade, String bairro, String urlFoto, String urlLogo,
                   String titulo, String telefone, String texto, String endereco, double latitude,
-                  double longitude, Comentario comentario) {
+                  double longitude, ArrayList<Comentario> comentarios) {
         this.id = id;
         this.cidade = cidade;
         this.bairro = bairro;
@@ -29,7 +31,7 @@ public class tarefa {
         this.endereco = endereco;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.comentario = comentario;
+        this.comentarios = comentarios;
     }
 
     public String getId() {
@@ -120,11 +122,11 @@ public class tarefa {
         this.longitude = longitude;
     }
 
-    public Comentario getComentario() {
-        return comentario;
+    public ArrayList<Comentario> getComentarios() {
+        return comentarios;
     }
 
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
+    public void setComentarios(ArrayList<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 }
